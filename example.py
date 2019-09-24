@@ -25,43 +25,43 @@ score.score_1 = 0
 score.score_2 = 0
 
 while True:
-    input_state_4 = GPIO.input(4)
-    input_state_5 = GPIO.input(5)
+    player_1_increment = GPIO.input(4)
+    player_1_decrement = GPIO.input(5)
 
-    input_state_20 = GPIO.input(20)
-    input_state_21 = GPIO.input(21)
+    player_2_increment = GPIO.input(20)
+    player_2_decrement = GPIO.input(21)
 
-    input_state_26 = GPIO.input(26)
+    reset_button = GPIO.input(26)
 
     # Player 1
-    if input_state_4 == False:
+    if player_1_increment == False:
         score.score_1 += 1
         time.sleep(.4)
 
-    if input_state_5 == False:
+    if player_1_decrement == False:
         score.score_1 -= 1
         if score.score_1 <= 0:
             score.score_1 = 0
         time.sleep(0.4)
 
     # Player 2
-    if input_state_20 == False:
+    if player_2_increment == False:
         score.score_2 += 1
         time.sleep(.4)
 
-    if input_state_21 == False:
+    if player_2_decrement == False:
         score.score_2 -= 1
         if score.score_2 <= 0:
             score.score_2 = 0
         time.sleep(0.4)
     
     # RESET
-    if input_state_26 == False:
+    if reset_button == False:
         score.score_1 = 0
         score.score_2 = 0
         time.sleep(.4)
 
-    if input_state_4 == False or input_state_5 == False or input_state_20 == False or input_state_21 == False or input_state_26 == False:
+    if player_1_increment == False or player_1_decrement == False or player_2_increment == False or player_2_decrement == False or reset_button == False:
         print(score.score_1, score.score_2)
         publish.single(MQTT_PATH, json.dumps(score.__dict__), hostname=MQTT_SERVER)
 
