@@ -14,7 +14,7 @@ GPIO.setup(21, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 GPIO.setup(26, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
-MQTT_SERVER = "54.213.60.205"
+MQTT_SERVER = "ec2-34-216-22-106.us-west-2.compute.amazonaws.com/"
 MQTT_PATH = "mychanel"
 
 class Score:
